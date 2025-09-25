@@ -1,0 +1,260 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffe0f0; /* Soft pink background */
+    color: #333; /* Dark text */
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Polka dot effect */
+    background-image: radial-gradient(#ffffff 2px, transparent 0);
+    background-size: 30px 30px; 
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 900px; /* Increased max-width for the gallery */
+    width: 90%;
+    z-index: 1; /* Ensures content is above confetti/modal */
+}
+
+h1 {
+    color: #ff69b4; /* Hot pink */
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #7b68ee; /* Purple for the section title */
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+/* --- Base Photo Frame Styles (for gallery items) --- */
+.photo-frame {
+    margin: 0 auto 15px; /* Center the photo frame within its container */
+    border: 4px solid #ffd700; /* Gold border */
+    border-radius: 50%; /* Default to circle for gallery */
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.4);
+    /* Ensure image takes up 100% of frame */
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style for the smaller frames in the gallery */
+.small-frame {
+    width: 150px;
+    height: 150px;
+}
+
+/* --- Specific Styles for the Main Photo Frame --- */
+.main-photo-frame {
+    width: 100%; /* Take full width of its container (max-width of container) */
+    max-width: 450px; /* Limit its maximum size */
+    height: auto; /* Allow height to adjust naturally based on image aspect ratio */
+    border-radius: 15px; /* More rectangular corners */
+    margin: 20px auto 30px; /* Adjust margins for top photo */
+    border: 6px solid #ff69b4; /* Hot pink border for main photo */
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6); /* Stronger shadow */
+}
+
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the frame without distortion */
+    display: block; /* Removes extra space below image */
+}
+
+/* --- Gallery Styles --- */
+.memories-gallery {
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
+    gap: 25px; /* Spacing between the photo cards */
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.memory-card {
+    background-color: #fff0f5; /* Lighter background for the card */
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    flex: 1 1 250px; /* Allows cards to grow/shrink, minimum width of 250px */
+    max-width: 280px;
+    text-align: center;
+    transition: transform 0.2s ease;
+    cursor: pointer; /* Indicates the card is clickable */
+}
+
+.memory-card:hover {
+    transform: translateY(-5px); /* Little lift effect on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.memory-card h3 {
+    color: #ff4500; /* Orange-red for memory titles */
+    margin: 10px 0 5px;
+    font-size: 1.2em;
+}
+
+.memory-card p {
+    font-size: 0.95em;
+    color: #555;
+}
+
+
+/* --- End Gallery Styles --- */
+
+.message {
+    font-size: 1.1em;
+    line-height: 1.6;
+    padding: 0 10px;
+}
+
+.message br {
+    line-height: 2;
+}
+
+#confetti-button {
+    background-color: #7b68ee; /* Medium slate blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-top: 15px;
+}
+
+#confetti-button:hover {
+    background-color: #6a5acd;
+    transform: scale(1.05);
+}
+
+.wish {
+    margin-top: 40px;
+    font-style: italic;
+    color: #ff4500; /* Orange-red */
+}
+
+/* --- Modal/Full-Screen Image Styles --- */
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top of everything */
+    padding-top: 50px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (The Image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh; /* Adjusts to viewport height */
+    object-fit: contain; /* Ensures the whole image is visible */
+}
+
+/* The Close Button */
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Caption (Image description) */
+.modal-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    font-size: 1.1em;
+}
+
+/* Add an effect for the modal showing up */
+.modal-content, #modal-caption {  
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* --- Responsive Design --- */
+
+/* Add this new rule to your existing style.css */
+#birthday-music {
+    display: none;
+}
+
+/* ... (All your previous CSS code follows) ... */
+/* Media query for smaller screens to ensure stacking */
+@media (max-width: 650px) {
+    .container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+
+    .main-photo-frame {
+        max-width: 100%; /* Allows it to shrink on small screens */
+        border-radius: 10px; /* Slightly less rounded corners for smaller screens */
+    }
+
+    .memories-gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .memory-card {
+        max-width: 90%;
+        width: 100%;
+    }
+    
+    .modal-content {
+        width: 100%;
+    }
+
+    .modal-close {
+        right: 20px;
+        font-size: 30px;
+    }
+}
